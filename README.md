@@ -4,7 +4,7 @@
 
 An Express server exposing a simple calendar API that communicates with a MongoDB.
 
-Thanks to (http://getbootstrap.com/components/#list-group) for help.
+Thanks to https://www.djamware.com/post/58e0d15280aca75cdc948e4e/building-chat-application-using-mean-stack-angular-4-and-socketio for help.
 
 ## Start Server
 
