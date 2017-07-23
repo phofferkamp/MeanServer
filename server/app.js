@@ -5,7 +5,12 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var event = require('./routes/event');
+
+var cors = require('cors');
+
 var app = express();
+
+app.use(cors());
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

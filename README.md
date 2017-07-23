@@ -15,8 +15,8 @@ $ sudo PORT=80 npm start > stdout.txt 2> stderr.txt &
 ## Kill Server
 
 ```bash
-ps aux | grep node
-sudo kill -9 [process_id]
+$ ps aux | grep node
+$ sudo kill -9 [process_id for "node ./server/www"]
 ```
 
 ## License

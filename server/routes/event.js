@@ -1,23 +1,18 @@
 var express = require('express');
 var router = express.Router();
-//var app = express();
-//var server = require('http').createServer(app);
-//var io = require('socket.io')(server);
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 var Event = require('../models/Event.js');
 
-/*server.listen(4000);
+server.listen(4000);
 
 // socket io
 io.on('connection', function (socket) {
-  console.log('User connected');
-  socket.on('disconnect', function () {
-    console.log('User disconnected');
+  socket.on('event-updated', function () {
+    io.emit('events-update');
   });
-  socket.on('save-message', function (data) {
-    console.log(data);
-    io.emit('new-message', { message: data });
-  });
-});*/
+});
 
 /* GET all events */
 router.get('/', function (req, res, next) {
