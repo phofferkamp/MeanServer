@@ -5,7 +5,7 @@ var config = {
 
 config.www.port = process.env.PORT || '443';
 
-config.whitelist = ["https://www4-dev.panduit.com", "http://localhost:4200"];
+config.whitelist = ["http://www4-dev.panduit.com", "https://www4-dev.panduit.com", "http://localhost:4200"];
 
 config.event.port = 4000;
 
