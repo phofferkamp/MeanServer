@@ -9,7 +9,7 @@ Thanks to https://github.com/didinj/mean-angular4-chat-app for help.
 ## Start Server
 
 ```bash
-$ sudo PORT=80 npm start > stdout.txt 2> stderr.txt &
+$ sudo npm start > stdout.txt 2> stderr.txt &
 ```
 
 ## Kill Server

@@ -39,12 +39,20 @@ io.on('connection', function (socket) {
   });
 });
 
+function validateToken(headers) {
+  return headers.pantoken === config.event.token;
+}
+
 /* GET all events */
 router.get('/', function (req, res, next) {
-  Event.find({}, function (err, events) {
-    if (err) return next(err);
-    res.json(events);
-  });
+  if (validateToken(req.headers)) {
+    Event.find({}, function (err, events) {
+      if (err) return next(err);
+      res.json(events);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 /* GET event 
@@ -57,26 +65,38 @@ router.get('/:event', function(req, res, next) {
 
 /* SAVE event */
 router.post('/', function (req, res, next) {
-  Event.create(req.body, function (err, event) {
-    if (err) return next(err);
-    res.json(event);
-  });
+  if (validateToken(req.headers)) {
+    Event.create(req.body, function (err, event) {
+      if (err) return next(err);
+      res.json(event);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 /* UPDATE event */
 router.put('/:event', function (req, res, next) {
-  Event.findByIdAndUpdate(req.params.event, req.body, function (err, event) {
-    if (err) return next(err);
-    res.json(event);
-  });
+  if (validateToken(req.headers)) {
+    Event.findByIdAndUpdate(req.params.event, req.body, function (err, event) {
+      if (err) return next(err);
+      res.json(event);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 /* DELETE event */
 router.delete('/:event', function (req, res, next) {
-  Event.findByIdAndRemove(req.params.event, function (err, event) {
-    if (err) return next(err);
-    res.json(event);
-  });
+  if (validateToken(req.headers)) {
+    Event.findByIdAndRemove(req.params.event, function (err, event) {
+      if (err) return next(err);
+      res.json(event);
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 module.exports = router;
