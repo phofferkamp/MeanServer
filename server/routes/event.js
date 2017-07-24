@@ -1,11 +1,36 @@
+var config = require('../config');
+
 var express = require('express');
 var router = express.Router();
 var app = express();
-var server = require('http').createServer(app);
+
+var cors = require('cors');
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || config.whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}
+
+app.use(cors(corsOptions));
+
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+var server = https.createServer(options, app).listen(config.event.port);
+
 var io = require('socket.io')(server);
 var Event = require('../models/Event.js');
-
-server.listen(4000);
 
 // socket io
 io.on('connection', function (socket) {

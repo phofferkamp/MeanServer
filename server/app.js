@@ -1,3 +1,5 @@
+var config = require('./config');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,9 +10,20 @@ var event = require('./routes/event');
 
 var cors = require('cors');
 
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || config.whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}
+
 var app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
