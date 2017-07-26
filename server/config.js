@@ -5,10 +5,10 @@ var config = {
 
 config.www.port = process.env.PORT || '443';
 
-config.whitelist = ["http://www4-dev.panduit.com", "https://www4-dev.panduit.com", "http://localhost:4200"];
+config.whitelist = [];
 
 config.event.port = 4000;
 
-config.event.token = "2556713538412c3153787a4a3528773d";
+config.event.token = "";
 
 module.exports = config;
