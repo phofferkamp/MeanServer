@@ -57,7 +57,7 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/aem-calendar', {
+mongoose.connect('mongodb://localhost/' + config.appName, {
   useMongoClient: true
 })
   .then(() => console.log('connection successful'))

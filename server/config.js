@@ -3,6 +3,8 @@ var config = {
     event: {}
 };
 
+config.appName = "my-app";
+
 config.www.port = process.env.PORT || '443';
 
 config.whitelist = [];
