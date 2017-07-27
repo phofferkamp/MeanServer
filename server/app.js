@@ -6,8 +6,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var event = require('./routes/event');
-
 var cors = require('cors');
 
 var corsOptions = {
@@ -33,7 +31,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use(express.static(path.join(__dirname, '../views')));
 
-app.use('/event', event);
+for (var i = 0; i < config.routes.length; i++) {
+  var route = config.routes[i];
+
+  var router = require('./routes/' + route.name)(route.token, route.whitelist, route.socketioPort);
+
+  app.use('/' + route.name, router);
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
