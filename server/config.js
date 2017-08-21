@@ -4,10 +4,10 @@ var config = {
         {
             name: "event",
             token: "test",
-            whitelist: [],
             socketioPort: 4000,
         }
-    ]
+    ],
+    whitelist: []
 };
 
 config.appName = "my-app";
