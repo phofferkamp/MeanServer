@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, '../views')));
 for (var i = 0; i < config.routes.length; i++) {
   var route = config.routes[i];
 
-  var router = require('./routes/' + route.name)(route.token, config.whitelist, route.socketioPort);
+  var router = require('./routes/' + route.name)(config.whitelist, route.socketioPort, route.token);
 
   app.use('/' + route.name, router);
 }

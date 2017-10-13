@@ -1,4 +1,4 @@
-module.exports = function (token, whitelist, socketioPort) {
+module.exports = function (whitelist, socketioPort, token) {
   var express = require('express');
   var router = express.Router();
   var app = express();
@@ -18,15 +18,17 @@ module.exports = function (token, whitelist, socketioPort) {
 
   app.use(cors(corsOptions));
 
-  var https = require('https');
-  var fs = require('fs');
+  //var https = require('https');
+  var http = require('http');
+  /*var fs = require('fs');
 
   var options = {
     key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('cert.pem')
-  };
+  };*/
 
-  var server = https.createServer(options, app).listen(socketioPort);
+  //var server = http.createServer(options, app).listen(socketioPort);
+  var server = http.createServer(app).listen(socketioPort);
 
   var io = require('socket.io')(server);
   var Event = require('../models/Event.js');
