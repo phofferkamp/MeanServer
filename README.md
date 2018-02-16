@@ -2,21 +2,41 @@
 
 ## Description
 
-An Express server exposing a simple calendar API that communicates with a MongoDB.
+An ExpressJS server exposing an awards ceremony game API that communicates with a MongoDB, including a web monitor service and email notifications.
 
 Thanks to https://github.com/didinj/mean-angular4-chat-app for help.
 
-## Start Server
+Support EFF at https://supporters.eff.org/donate/support-work-on-certbot !
+
+## Install Frameworks
+
+Node.js: https://nodejs.org/en/download/package-manager/
+
+MongoDB: https://docs.mongodb.com/manual/administration/install-community/
+
+## Obtain SSL Certificate
+
+https://certbot.eff.org/
+
+## Install Node.js Packages
 
 ```bash
-$ sudo npm start > stdout.txt 2> stderr.txt &
+$ npm install
 ```
 
-## Kill Server
+## Register Services
 
 ```bash
-$ ps aux | grep node
-$ sudo kill -9 [process_id for "node ./server/www"]
+$ node install_mean_svc.js
+$ node install_monitor_svc.js
+```
+
+## Start Services
+
+```bash
+$ sudo service mongod start
+$ sudo service meanserver start
+$ sudo service webmonitor start
 ```
 
 ## License
